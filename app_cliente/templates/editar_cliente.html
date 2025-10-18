@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cliente</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { max-width: 400px; }
+        label { display: block; margin: 10px 0 5px; }
+        input { width: 100%; padding: 8px; margin-bottom: 10px; }
+        button { background-color: #007BFF; color: white; padding: 10px 15px; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Editar clientes</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>apellido paterno:</label>
+        <input type="text" name="nombre" value="{{ cliente.apepaterno }}" required>
+
+        <label>apellido materno:</label>
+        <input type="text" name="categoria" value="{{ cliente.apepaterno }}" required>
+
+        <label>nombre:</label>
+        <input type="text" name="categoria" value="{{ cliente.apepaterno }}" required>
+
+        <label>domicilio:</label>
+        <textarea name="domicilio">{{ cliente.domicilio }}</textarea>
+
+        <label>email:</label>
+        <input type="text" name="categoria" value="{{ cliente.email }}" required>
+
+        <label>telefono:</label>
+        <input type="text" name="precio" value="{{ cliente.telefono }}" required>
+        
+        <label>alergia:</label>
+        <textarea name="alergia">{{ cliente.alergia }}</textarea>
+
+        <button type="submit">Actualizar</button>
+    </form>
+    <a href="/">Volver al listado</a>
+</body>
+</html>

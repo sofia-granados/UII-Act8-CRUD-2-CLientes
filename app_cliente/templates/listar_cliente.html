@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Clientes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { margin: 5px; padding: 5px 10px; text-decoration: none; color: white; }
+        .editar { background-color: #007BFF; }
+        .borrar { background-color: #DC3545; }
+        .agregar { background-color: #28A745; display: inline-block; margin: 10px 0; padding: 10px 15px; color: white; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Listado de Clientes</h1>
+        <a href="{% url 'agregar_cliente' %}" class="btn agregar">Agregar Cliente</a> 
+    <table>
+        <thead>
+            <tr>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Nombre</th>
+                <th>Domicilio</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Alergias</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.apepaterno }}</td>
+                <td>{{ cliente.apematerno }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.domicilio }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.telefono }}</td>
+                <td>{{ cliente.alergias|default:"N/A" }}</td> {# Usamos default para mostrar N/A si no hay alergias #}
+                <td>
+                     <a href="{% url 'editar_cliente' cliente.id %}" class="btn editar">Editar</a>
+                    <a href="{% url 'borrar_cliente' cliente.id %}" class="btn borrar">Borrar</a>
+                    {# <a href="{% url 'ver_cliente' cliente.id %}" class="btn">Ver</a> #}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No hay clientes registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
